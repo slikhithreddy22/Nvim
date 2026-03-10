@@ -71,3 +71,7 @@ end, { desc = "Toggle Copilot" })
 -- Saving file
 map("n", "<C-s>", "<cmd>w<cr>", { desc = "Save" })
 map("i", "<C-s>", "<Esc><cmd>w<cr>a", { desc = "Save" })
+
+-- Select all
+map("n", "<C-a>", "ggVG", { desc = "Select all" })
+map("i", "<C-a>", "<Esc>ggVG", { desc = "Select all" })

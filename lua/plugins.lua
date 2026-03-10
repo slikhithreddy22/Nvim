@@ -178,29 +178,16 @@ end
     config = function()
       require("mason").setup()
       require("mason-lspconfig").setup({
-        ensure_installed = {
-            "pyright",           -- Python
-            "ts_ls",             -- JavaScript / TypeScript
-            "lua_ls",            -- Lua (for editing nvim config itself)
-            "bashls",            -- Bash
-            "html",              -- HTML
-            "cssls",             -- CSS
-            "jsonls",            -- JSON
-        },
-        automatic_installation = true,
-        })
+        automatic_installation = false,
+      })
 
-        -- enable each one
-        vim.lsp.config("pyright", {})
-        vim.lsp.config("ts_ls", {})
-        vim.lsp.config("lua_ls", {})
-        vim.lsp.config("bashls", {})
-        vim.lsp.config("html", {})
-        vim.lsp.config("cssls", {})
-        vim.lsp.config("jsonls", {})
-
-        vim.lsp.enable({ "pyright", "ts_ls", "lua_ls", "bashls", "html", "cssls", "jsonls" })
-        end,
+      -- auto-enable whatever you install via :Mason
+      local installed = require("mason-lspconfig").get_installed_servers()
+      for _, server in ipairs(installed) do
+        vim.lsp.config(server, {})
+        vim.lsp.enable(server)
+      end
+    end,
   },
 
   -- Autocompletion
