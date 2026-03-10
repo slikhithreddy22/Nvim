@@ -140,6 +140,12 @@ end
         { "<leader>x", desc = "Close Buffer" },
         { "<leader>c",  group = "Copilot" },
         { "<leader>cp", desc = "Toggle Copilot" },
+        { "<leader>b", group = "Buffers" },
+        { "<leader>bn", desc = "Next buffer" },
+        { "<leader>bp", desc = "Prev buffer" },
+        { "<leader>bx", desc = "Close buffer" },
+        { "<leader>bl", desc = "List all buffers" },
+        { "<leader>bo", desc = "Close other buffers" },
       })
     end,
   },

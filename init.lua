@@ -1,3 +1,11 @@
+-- eliminate flash
+vim.api.nvim_command("hi clear")
+vim.o.background = "dark"
+vim.opt.termguicolors = true
+
+-- hardcode basic gruvbox bg before plugin loads
+vim.api.nvim_set_hl(0, "Normal",  { bg = "#1d2021" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1d2021" })
 -- Basic options
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -11,6 +19,8 @@ vim.opt.scrolloff = 8
 vim.opt.updatetime = 100
 vim.opt.numberwidth = 4
 
+vim.o.background = "dark"
+vim.cmd("colorscheme default")
 -- Leader key
 vim.g.mapleader = " "
 
@@ -70,8 +80,29 @@ end, { desc = "Toggle Copilot" })
 
 -- Saving file
 map("n", "<C-s>", "<cmd>w<cr>", { desc = "Save" })
-map("i", "<C-s>", "<Esc><cmd>w<cr>a", { desc = "Save" })
+map("i", "<C-s>", "<cmd>w<cr><Esc>", { desc = "Save and go to normal" })
 
 -- Select all
 map("n", "<C-a>", "ggVG", { desc = "Select all" })
 map("i", "<C-a>", "<Esc>ggVG", { desc = "Select all" })
+
+-- Buffer menu
+map("n", "<leader>bn", "<cmd>bnext<cr>",                          { desc = "Next buffer" })
+map("n", "<leader>bp", "<cmd>bprev<cr>",                          { desc = "Prev buffer" })
+map("n", "<leader>bx", "<cmd>bdelete<cr>",                        { desc = "Close buffer" })
+map("n", "<leader>bl", function() require("telescope.builtin").buffers() end, { desc = "List all buffers" })
+map("n", "<leader>bo", function()
+  local current = vim.api.nvim_get_current_buf()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if buf ~= current and vim.api.nvim_buf_is_loaded(buf) then
+      vim.api.nvim_buf_delete(buf, { force = false })
+    end
+  end
+end, { desc = "Close other buffers" })
+
+-- Fix Home / End in insert mode
+-- remap terminal's <Find> to <Home> behavior  
+map("i", "<Find>", "<C-o>^", { desc = "Start of line" })
+map("n", "<Find>", "^",      { desc = "Start of line" })
+map("i", "<Select>", "<C-o>$", { desc = "End of line" })
+map("n", "<Select>", "$",      { desc = "End of line" })
