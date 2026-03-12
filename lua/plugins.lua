@@ -55,7 +55,7 @@ return {
       })
     end,
     keys = {
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+      { "<leader><leader>", "<cmd>Telescope find_files<cr>", desc = "Find files" },
       { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live grep" },
       { "<leader>fb", "<cmd>Telescope buffers<cr>",    desc = "Buffers" },
     },
@@ -146,6 +146,7 @@ end
         { "<leader>bx", desc = "Close buffer" },
         { "<leader>bl", desc = "List all buffers" },
         { "<leader>bo", desc = "Close other buffers" },
+        { "<leader>bb", desc = "Alternate buffer" },
         { "]e", desc = "Next error" },
         { "[e", desc = "Prev error" },
       })

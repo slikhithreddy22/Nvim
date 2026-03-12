@@ -115,3 +115,5 @@ end)
 map("n", "[e", function()
   vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
 end)
+
+vim.keymap.set("n", "<leader>bb", "<C-^>", { desc = "Alternate buffer" })
