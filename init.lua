@@ -106,3 +106,12 @@ map("i", "<Find>", "<C-o>^", { desc = "Start of line" })
 map("n", "<Find>", "^",      { desc = "Start of line" })
 map("i", "<Select>", "<C-o>$", { desc = "End of line" })
 map("n", "<Select>", "$",      { desc = "End of line" })
+
+
+map("n", "]e", function()
+  vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+end)
+
+map("n", "[e", function()
+  vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end)

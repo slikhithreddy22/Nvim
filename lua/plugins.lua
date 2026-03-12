@@ -146,6 +146,8 @@ end
         { "<leader>bx", desc = "Close buffer" },
         { "<leader>bl", desc = "List all buffers" },
         { "<leader>bo", desc = "Close other buffers" },
+        { "]e", desc = "Next error" },
+        { "[e", desc = "Prev error" },
       })
     end,
   },
